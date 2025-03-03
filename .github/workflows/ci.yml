@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - johannes
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          pwd
