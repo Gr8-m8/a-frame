@@ -20,6 +20,10 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./a-frame
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -33,10 +37,19 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
+          pwd
       # compile a typst document:
       - uses: typst-community/setup-typst@v4
         with:
           cache-dependency-path: requirements.typ
       # Now Typst is installed and packages will be cached!
-      - run: typst compile paper.typ paper.pdf
+        # working-directory: .
+      - run: |
+          # cd .
+          typst compile paper.typ paper.pdf
+          # mkdir documentation
+          # cp paper.typ documentation/paper.pdf
+      # - run: |
+        #  typst compile paper.typ paper.pdf
+         # cp paper.pdf ./documentation/paper.pdf
+      # - run: cp paper.pdf documentation/.
